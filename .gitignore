@@ -1,3 +1,4 @@
 */*
 
 !deploy-a-single-server/main.tf
+!deploy-a-single-web-server/main.tf
