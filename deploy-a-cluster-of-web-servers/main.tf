@@ -43,10 +43,6 @@ variable "server_port" {
     default= 8080
 }
 
-output "public_ip" {
-    value = "${aws_instance.single-web-server.public_ip}"
-}
-
 resource "aws_autoscaling_group" "cluster-of-web-servers-ASG" {
     launch_configuration = "${aws_launch_configuration.cluster-of-web-servers.id}"
     availability_zones = ["${data.aws_availability_zones.all.names}"]
@@ -109,4 +105,8 @@ resource "aws_security_group" "elb" {
 variable "load_balancer_port" {
     description = "Port number the load balancer will use to route HTTP requests"
     default= 80
+}
+
+output "elb_dns_name" {
+    value = "${aws_elb.cluster-of-web-servers-ELB.dns_name}"
 }
