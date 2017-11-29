@@ -33,3 +33,7 @@ variable "server_port" {
     description = "Port number the service will use for HTTP requests"
     default= 8080
 }
+
+output "public_ip" {
+    value = "${aws_instance.single-web-server.public_ip}"
+}
