@@ -51,6 +51,10 @@ resource "aws_autoscaling_group" "cluster-of-web-servers-ASG" {
     launch_configuration = "${aws_launch_configuration.cluster-of-web-servers.id}"
     availability_zones = ["${data.aws_availability_zones.all.names}"]
 
+    # NOTE: this lets the ELB know which instances to send requests to
+    load_balancers = ["${aws_elb.cluster-of-web-servers-ELB.name}"]
+    health_check = "ELB"
+
     min_size = 2
     max_size = 10
 
@@ -74,6 +78,14 @@ resource "aws_elb" "cluster-of-web-servers-ELB" {
         instance_port = "${var.server_port}"
         instance_protocol = "http"
     }
+
+    health_check {
+        healthy_threshold = 2
+        unhealthy_threshold = 2
+        timeout = 3
+        interval = 30
+        target = "HTTP:${var.server_port}/"
+    }
 }
 
 resource "aws_security_group" "elb" {
@@ -83,6 +95,13 @@ resource "aws_security_group" "elb" {
         from_port = "${var.load_balancer_port}"
         to_port = "${var.load_balancer_port}"
         protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    egress {
+        from_port = 0
+        to_port = 0
+        protocol = "-1"
         cidr_blocks = ["0.0.0.0/0"]
     }
 }
