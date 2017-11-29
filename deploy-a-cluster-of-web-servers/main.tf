@@ -3,13 +3,9 @@ provider "aws" {
 }
 
 resource "aws_launch_configuration" "cluster-of-web-servers" {
-    ami = "ami-40d28157"
+    image_id = "ami-40d28157"
     instance_type = "t2.micro"
-    vpc_security_group_ids = ["${aws_security_group.instance.id}"]
-
-    tags {
-        Name = "cluster-of-web-servers"
-    }
+    security_groups = ["${aws_security_group.instance.id}"]
 
     user_data = <<-EOF
                 #!/bin/bash
@@ -49,7 +45,7 @@ resource "aws_autoscaling_group" "cluster-of-web-servers-ASG" {
 
     # NOTE: this lets the ELB know which instances to send requests to
     load_balancers = ["${aws_elb.cluster-of-web-servers-ELB.name}"]
-    health_check = "ELB"
+    health_check_type = "ELB"
 
     min_size = 2
     max_size = 10
