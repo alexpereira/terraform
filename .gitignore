@@ -2,3 +2,4 @@
 
 !deploy-a-single-server/main.tf
 !deploy-a-single-web-server/main.tf
+!deploy-a-cluster-of-web-servers/main.tf
