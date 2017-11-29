@@ -62,3 +62,15 @@ resource "aws_autoscaling_group" "cluster-of-web-servers-ASG" {
 }
 
 data "aws_availability_zones" "all" {}
+
+resource "aws_elb" "cluster-of-web-servers-ELB" {
+    name = "cluster-of-web-servers-ELB"
+    availability_zones = ["${data.aws_availability_zones.all.names}"]
+
+    listener {
+        lb_port = 80
+        lb_protocol = "http"
+        instance_port = "${var.server_port}"
+        instance_protocol = "http"
+    }
+}
