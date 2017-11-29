@@ -66,6 +66,7 @@ data "aws_availability_zones" "all" {}
 resource "aws_elb" "cluster-of-web-servers-ELB" {
     name = "cluster-of-web-servers-ELB"
     availability_zones = ["${data.aws_availability_zones.all.names}"]
+    security_groups = ["${aws_security_group.elb.id}"]
 
     listener {
         lb_port = 80
@@ -73,4 +74,20 @@ resource "aws_elb" "cluster-of-web-servers-ELB" {
         instance_port = "${var.server_port}"
         instance_protocol = "http"
     }
+}
+
+resource "aws_security_group" "elb" {
+    name = "cluster-of-we-servers-elb"
+
+    ingress {
+        from_port = "${var.load_balancer_port}"
+        to_port = "${var.load_balancer_port}"
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+}
+
+variable "load_balancer_port" {
+    description = "Port number the load balancer will use to route HTTP requests"
+    default= 80
 }
