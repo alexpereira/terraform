@@ -9,6 +9,7 @@ resource "aws_db_instance" "postgres-db" {
     name = "postgres_database"
     username = "birdperson"
     password = "${var.db_password}"
+    skip_final_snapshot = true
 }
 
 terraform {
