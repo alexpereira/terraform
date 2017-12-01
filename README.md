@@ -17,3 +17,4 @@ If you'd like to try creating these resources from your machine, clone this repo
 ### Notes:
 
 - Don't forget to run `terraform destroy` when you're done testing so AWS doesn't charge you for your resources
+- Change any s3 Bucket names in these files as they need to unique
