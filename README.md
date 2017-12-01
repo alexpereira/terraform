@@ -12,6 +12,7 @@ If you'd like to try creating these resources from your machine, clone this repo
 ### Chapter 3: How to Manage Terraform State
 
 - [Shared Storage for State Files](https://github.com/alexpereira/terraform/tree/master/shared-storage-for-state-files)
+- [Locking State Files](https://github.com/alexpereira/terraform/tree/master/locking-state-files)
 
 ### Notes:
 
