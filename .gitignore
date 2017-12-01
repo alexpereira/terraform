@@ -1,7 +1,9 @@
-*/*
+#  Local .terraform directories
+**/.terraform/*
 
-!deploy-a-single-server/main.tf
-!deploy-a-single-web-server/main.tf
-!deploy-a-cluster-of-web-servers/main.tf
-!shared-storage-for-state-files/main.tf
-!locking-state-files/main.tf
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# .tfvars files
+*.tfvars
