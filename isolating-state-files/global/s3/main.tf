@@ -4,6 +4,7 @@ provider "aws" {
 
 resource "aws_s3_bucket" "isolating-state-files" {
   bucket = "isolating-state-files-yolo"
+  # force_destroy = true
 
   versioning {
     enabled = true
