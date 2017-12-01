@@ -13,6 +13,7 @@ If you'd like to try creating these resources from your machine, clone this repo
 
 - [Shared Storage for State Files](https://github.com/alexpereira/terraform/tree/master/shared-storage-for-state-files)
 - [Locking State Files](https://github.com/alexpereira/terraform/tree/master/locking-state-files)
+- [Isolating State Files](https://github.com/alexpereira/terraform/tree/master/isolating-state-files)
 
 ### Notes:
 
