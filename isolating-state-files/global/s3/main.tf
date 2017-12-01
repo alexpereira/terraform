@@ -26,12 +26,12 @@ resource "aws_dynamodb_table" "isolating-state-files-lock" {
   }
 }
 
-terraform {
-  backend "s3" {
-    bucket  = "isolating-state-files-yolo"
-    key     = "global/s3/terraform.tfstate"
-    region  = "us-east-1"
-    encrypt = true
-    dynamodb_table= "isolating-state-files-lock-table"
-  }
-}
+# terraform {
+#   backend "s3" {
+#     bucket  = "isolating-state-files-yolo"
+#     key     = "global/s3/terraform.tfstate"
+#     region  = "us-east-1"
+#     encrypt = true
+#     dynamodb_table= "isolating-state-files-lock-table"
+#   }
+# }
